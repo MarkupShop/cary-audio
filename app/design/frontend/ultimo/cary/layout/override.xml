@@ -2,7 +2,8 @@
 <layout version="0.1.0">
 	<default>
 		<reference name="head">
-			<action method="addJs"><script>cary/run.js</script></action>
+			<action method="addItem"><type>skin_js</type><name>js/build/main.js</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/style.css</name><params>media="screen"</params></action>
 		</reference>
 	</default>
 	<customer_account>
