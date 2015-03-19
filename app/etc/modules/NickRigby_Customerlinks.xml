@@ -3,7 +3,7 @@
     <modules>
         <NickRigby_Customerlinks>
             <active>true</active>
-            <codePool>Community</codePool>
+            <codePool>community</codePool>
         </NickRigby_Customerlinks>
     </modules>
 </config>
