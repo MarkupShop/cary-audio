@@ -5,6 +5,11 @@
 			<action method="addItem"><type>skin_js</type><name>js/build/main.js</name><params/></action>
 			<action method="addItem"><type>skin_css</type><name>css/style.css</name><params>media="screen"</params></action>
 		</reference>
+		<reference name="left">
+			<remove name="right.poll" />
+			<remove name="tags_popular" />
+			<remove name="paypal.partner.right.logo" />
+		</reference>
 	</default>
 	<customer_account>
 		<reference name="customer_account_navigation">
@@ -16,4 +21,9 @@
 			<action method="removeLinkByName"><name>reviews</name></action>
 		</reference>
 	</customer_account>
+	<catalog_product_view>
+		<reference name="product.info.additional">
+			<action method="unsetChild"><name>product_tag_list</name></action>
+		</reference>
+	</catalog_product_view>
 </layout>
