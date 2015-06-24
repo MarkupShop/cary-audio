@@ -1,1 +1,1 @@
-jQuery(function(){});
+jQuery(function(n){n("h1").wrapInner("<span />")});
