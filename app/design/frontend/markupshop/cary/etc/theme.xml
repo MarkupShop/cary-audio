@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<theme>
+    <parent>ultimo/default</parent>
+	<layout>
+		<updates>
+			<infortis_ultimo>
+				<file>infortis_ultimo.xml</file>
+			</infortis_ultimo>
+			<markupshop_cary>
+				<file>markupshop_cary.xml</file>
+			</markupshop_cary>
+		</updates>
+	</layout>
+</theme>

@@ -1,9 +1,10 @@
 //Require
 var gulp = require('gulp'),
-		plumber	= require('gulp-plumber'),
-		sass = require('gulp-ruby-sass'),
-		jshint = require('gulp-jshint'),
-		uglify = require('gulp-uglify');
+    plumber	= require('gulp-plumber'),
+    sass = require('gulp-ruby-sass'),
+    jshint = require('gulp-jshint'),
+    uglify = require('gulp-uglify'),
+    include = require('gulp-include');
 
 //Set paths
 var paths =
@@ -47,9 +48,12 @@ gulp.task('compile-js', function()
 {
 	return gulp
 		.src(paths.js.src)
+        .pipe(include())
 		.pipe(plumber())
 		.pipe(gulp.dest(paths.js.dest))
-		.pipe(uglify())
+		.pipe(uglify({
+          mangle: false
+        }))
 		.pipe(gulp.dest(paths.js.dest));
 });
 
