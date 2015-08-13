@@ -39,4 +39,9 @@ cary.site = (function($) {
 
 })(jQuery);
 
-cary.site.init();
+(function($) { 
+  $(function() {
+    cary.site.init();
+  });
+  
+})(jQuery);
