@@ -1,0 +1,12 @@
+label.required,
+span.required {
+  &:after {
+    color: $primary-red;
+  }
+}
+
+.skip-link {
+  .count {
+    background-color: $primary-red;
+  }
+}
