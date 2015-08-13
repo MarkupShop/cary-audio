@@ -14,7 +14,7 @@ cary.site = (function($) {
   self.getBlogPosts = function()
   {
     //Call for blog posts
-    $.when(cary.helpers.getRSSFeed('http://www.caryaudio.com/feed/', 5)).done(function(data) {
+    $.when(cary.helpers.getRSSFeed('http://www.caryaudio.com/feed/', 2)).done(function(data) {
         
       //If we have response data
       if(data.responseData !== null)
