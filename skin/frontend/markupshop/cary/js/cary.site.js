@@ -21,17 +21,15 @@ cary.site = (function($) {
       {
         //Save to var
         var feed = data.responseData.feed;
-        
-        window.console.log(feed.entries);
 
         //If we have entries
         if(feed.entries.length > 0)
         {
           //Get html
           var html = cary.helpers.compileHTML('blog', feed.entries);
-
+          
           //Embed HTML
-          $('#blog-feed').html(html);
+          $('#blog-feed').append(html);
         }
       }
     });

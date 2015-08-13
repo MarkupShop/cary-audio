@@ -1,6 +1,13 @@
 #blog-feed {
   li {
-    margin: .75em 0;
+    margin: 0 0 .75em;
+  }
+  
+  a {
+    &:hover
+    {
+      color: #fff;
+    }
   }
   
   .date {
