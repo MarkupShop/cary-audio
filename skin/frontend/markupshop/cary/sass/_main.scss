@@ -10,3 +10,30 @@ span.required {
     background-color: $primary-red;
   }
 }
+	
+.google-maps {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+	overflow: hidden;
+	margin-bottom: 2em;
+	
+	iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+.contacts-index-index {
+	@media screen and (min-width:600px) {
+		.form-list {
+			textarea {
+				width: 550px;
+			}
+		}
+	}
+}
