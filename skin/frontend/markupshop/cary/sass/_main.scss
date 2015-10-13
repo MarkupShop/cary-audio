@@ -37,3 +37,27 @@ span.required {
 		}
 	}
 }
+
+.data-table {
+  border: 1px solid #f5f5f5;
+  border-width: 1px 1px 0 0;
+  
+  td, th {
+    border: 1px solid #f5f5f5;
+    border-width: 0 0 1px 1px;
+  }
+  
+  tr {
+    &.even, &.odd {
+      background: transparent;
+    }
+  }
+  
+  tr {
+    &:nth-child(even) {
+      td, th {
+        background: #f9f9f9;
+      }
+    }
+  }
+}
