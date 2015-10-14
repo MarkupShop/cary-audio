@@ -1,0 +1,38 @@
+<?php
+/**
+ * Featured items
+ */
+?>
+<?php
+    $_productCollection = $this->getLoadedProductCollection();
+?>
+<?php if ($_productCollection && ($_collectionSize = $this->getCollectionCount())): ?>
+
+<?php
+    $_helper = $this->helper('catalog/output');
+    $theme = $this->helper('ultimo');
+
+    //Number of items in a row displayed if responsive mode is off
+    $showItems = $this->getShowItems(); //param: show_items
+    if (!$showItems) //Param not set or equals zero
+    {
+        $showItems = 5; //Set default number of items
+    }
+?>
+
+<div class="block block-list block-viewed">
+  <div class="block-title">
+    <strong><span><?php echo $this->getBlockName(); ?></span></strong>
+  </div>
+  <div class="block-content">
+    <ol>
+      <?php foreach ($_productCollection as $_product): ?>
+      <li class="item">
+        <p class="product-name"><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?></a></p>
+      </li>
+      <?php endforeach; ?>
+    </ol>
+  </div>
+</div>
+
+<?php endif; ?>
