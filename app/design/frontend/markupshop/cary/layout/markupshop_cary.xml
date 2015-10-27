@@ -39,6 +39,9 @@
 				<action method="unsetChild">
 					<child>product_cms_block2</child>
 				</action>
+				<action method="unsetChild">
+					<child>additional</child>
+				</action>
 				<!-- Customer Reviews -->
 				<action method="addTab" translate="title" module="review"
 					ifconfig="ultimo/product_page/collateral_reviews"><alias>customer_reviews</alias><title>Customer Reviews</title><block>review/product_view_list</block><template>review/product/view/list.phtml</template></action>
