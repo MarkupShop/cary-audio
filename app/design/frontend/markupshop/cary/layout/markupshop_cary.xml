@@ -48,7 +48,7 @@
 				<!-- Professional Reviews -->
 				<action method="addTab" translate="title" module="catalog"><alias>professional_reviews</alias><title>Professional Reviews</title><block>catalog/product_view_attributes</block><template>catalog/product/view/professional_reviews.phtml</template></action>
                 <!-- Downloads -->
-                <action method="addTab" translate="title" module="catalog"><alias>downloads</alias><title>Downlaods</title><block>catalog/product_view_attributes</block><template>catalog/product/view/downloads.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog"><alias>downloads</alias><title>Downloads</title><block>catalog/product_view_attributes</block><template>catalog/product/view/downloads.phtml</template></action>
 			</reference> <!-- end: tabs -->
 			<!-- Adds Customer Reviews Form -->
 			<reference name="customer_reviews">
