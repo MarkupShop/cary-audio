@@ -1,0 +1,27 @@
+<layout version="0.1.0">	
+	<default>
+		 <reference name="head">
+			<action method="addCss">
+                <stylesheet>css/radweb/stripe/radweb_stripe.css</stylesheet>
+            </action>
+            <action method="addJs" ifconfig="payment/radweb_stripe/use_jquery"><script>radweb/stripe/jquery-1.10.2.min.js</script></action>
+            <action method="addJs"><script>radweb/stripe/stripe.js</script></action>
+         </reference>
+
+        <reference name="before_body_end">
+ 			<block type="core/template" name="stripejs" template="radweb/stripe/js.phtml" />
+		</reference>
+	</default>
+	
+	<opc_index_index>
+        <reference name="head">
+            <action method="removeItem"><type>skin_js</type><name>js/iwd/opc/checkout.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/iwd/opc/extend.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/opcheckout.js</name></action>
+
+            <action method="addItem"><type>skin_js</type><name>js/radweb/stripe/checkout.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/iwd/opc/extend.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/opcheckout.js</name></action>
+        </reference>
+    </opc_index_index>
+</layout>
