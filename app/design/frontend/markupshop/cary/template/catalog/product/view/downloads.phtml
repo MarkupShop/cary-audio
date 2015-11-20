@@ -1,0 +1,16 @@
+<?php
+//Get catalog helper
+$_helper = $this->helper('catalog/output');
+
+//Get the product
+$_product = $this->getProduct();
+
+// Get professional reviews attribute
+$downloads = $_helper->productAttribute($_product, $_product->getSpDownloads(), 'sp_downloads');
+
+// If product has downloads, output them
+if ($downloads != "") { ?>
+<?php echo $downloads; ?>
+<?php } else { ?>
+<p>No downloads for this product yet.</p>
+<?php } ?>

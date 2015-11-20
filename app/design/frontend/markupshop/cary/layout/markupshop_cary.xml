@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+	<default>
+		<reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/build/handlebars.runtime.min.js</name><params/></action>
+			<action method="addItem"><type>skin_js</type><name>js/build/main.js</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/style.css</name><params>media="screen"</params></action>
+		</reference>
+		<reference name="left">
+			<remove name="right.poll" />
+			<remove name="tags_popular" />
+			<remove name="paypal.partner.right.logo" />
+		</reference>
+	</default>
+	<customer_account>
+		<reference name="customer_account_navigation">
+			<action method="removeLinkByName"><name>recurring_profiles</name></action>
+			<action method="removeLinkByName"><name>billing_agreements</name></action>
+			<action method="removeLinkByName"><name>downloadable_products</name></action>
+			<action method="removeLinkByName"><name>tags</name></action>
+			<action method="removeLinkByName"><name>OAuth Customer Tokens</name></action>
+			<action method="removeLinkByName"><name>reviews</name></action>
+		</reference>
+	</customer_account>
+	<catalog_product_view>
+		<reference name="product.info.additional">
+			<action method="unsetChild"><name>product_tag_list</name></action>
+		</reference>
+        <reference name="product.info">
+			<reference name="product.info.tabs">
+				<!-- Remove original customer reviews so we can change the label -->
+				<action method="unsetChild">
+					<child>tabreviews</child>
+				</action>
+				<!-- Remove custom blocks -->
+				<action method="unsetChild">
+					<child>product_cms_block1</child>
+				</action>
+				<action method="unsetChild">
+					<child>product_cms_block2</child>
+				</action>
+				<action method="unsetChild">
+					<child>additional</child>
+				</action>
+				<!-- Customer Reviews -->
+				<action method="addTab" translate="title" module="review"
+					ifconfig="ultimo/product_page/collateral_reviews"><alias>customer_reviews</alias><title>Customer Reviews</title><block>review/product_view_list</block><template>review/product/view/list.phtml</template></action>
+				<!-- Professional Reviews -->
+				<action method="addTab" translate="title" module="catalog"><alias>professional_reviews</alias><title>Professional Reviews</title><block>catalog/product_view_attributes</block><template>catalog/product/view/professional_reviews.phtml</template></action>
+                <!-- Downloads -->
+                <action method="addTab" translate="title" module="catalog"><alias>downloads</alias><title>Downloads</title><block>catalog/product_view_attributes</block><template>catalog/product/view/downloads.phtml</template></action>
+			</reference> <!-- end: tabs -->
+			<!-- Adds Customer Reviews Form -->
+			<reference name="customer_reviews">
+				<block type="review/form" name="product.review.form" as="review_form">
+					<block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
+						<label>Review Form Fields Before</label>
+						<action method="setMayBeInvisible"><value>1</value></action>
+					</block>
+				</block>
+			</reference>
+        </reference>
+	</catalog_product_view>
+</layout>

@@ -1,0 +1,16 @@
+<?php
+//Get catalog helper
+$_helper = $this->helper('catalog/output');
+
+//Get the product
+$_product = $this->getProduct();
+
+// Get professional reviews attribute
+$professionalReviews = $_helper->productAttribute($_product, $_product->getSpProfessionalReviews(), 'sp_professional_reviews');
+
+// If product has professional reviews, output them
+if ($professionalReviews != "") { ?>
+<?php echo $professionalReviews; ?>
+<?php } else { ?>
+<p>No professional reviews for this product yet.</p>
+<?php } ?>

@@ -1,0 +1,8 @@
+<ul>
+  {{#each .}}
+  <li>
+      <a href="{{link}}" target="_blank">{{title}}</a>
+      <span class="date">{{#date}}{{publishedDate}}{{/date}}</span>
+  </li>
+  {{/each}}
+</ul>
