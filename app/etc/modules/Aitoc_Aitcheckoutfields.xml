@@ -2,10 +2,10 @@
 <config>
     <modules>
         <Aitoc_Aitcheckoutfields>
-            <active>false</active>
+            <active>true</active>
             <codePool>local</codePool>
             <self_name>Checkout Fields</self_name>
             <priority>10099</priority>
         </Aitoc_Aitcheckoutfields>
-    <Aitoc_aitcheckoutfields><active>true</active></Aitoc_aitcheckoutfields></modules>
+    </modules>
 </config>

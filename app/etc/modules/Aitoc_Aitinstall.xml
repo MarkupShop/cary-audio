@@ -9,5 +9,5 @@
             <active>true</active>
             <codePool>community</codePool>
         </Aitoc_Aitinstall>
-    <Aitoc_aitinstall><active>true</active></Aitoc_aitinstall></modules>
+    </modules>
 </config>
