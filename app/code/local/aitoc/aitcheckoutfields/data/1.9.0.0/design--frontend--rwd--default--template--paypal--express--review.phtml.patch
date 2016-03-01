@@ -1,0 +1,168 @@
+diff -aurBb
+--- app/design/frontend/rwd/default/template/paypal/express/review.phtml	(revision )
++++ app/design/frontend/rwd/default/template/paypal/express/review.phtml	(revision )
+@@ -24,6 +24,7 @@
+  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+  */
+ /** @var $this Mage_Paypal_Block_Express_Review */
++$cfmHelper = Mage::helper('aitcheckoutfields');
+ ?>
+ <div class="page-title">
+     <h1><?php echo $this->__('Review Order') ?></h1>
+@@ -38,11 +39,20 @@
+                     <h3><?php echo $this->__('Shipping Address') ?><span class="separator"><?php if ($this->getCanEditShippingAddress()):?> | </span><a href="<?php echo $this->getEditUrl() ?>"><?php echo $this->__('Edit') ?></a><?php endif;?></h3>
+                 </div>
+                 <div class="box-content">
++
++                    <?php echo $cfmHelper->getStepFieldsCode('shippinfo', 1, 'onepage', 'aitpaypalexpress'); ?>
++
+                     <address><?php echo $this->renderAddress($this->getShippingAddress())?></address>
++
++                    <?php echo $cfmHelper->getStepFieldsCode('shippinfo', 2, 'onepage', 'aitpaypalexpress'); ?>
++
+                 </div>
+             </div>
+         </div>
+         <div class="col-2">
++
++            <?php echo $cfmHelper->getStepFieldsCode('shippmethod', 1, 'onepage', 'aitpaypalexpress'); ?>
++
+             <div class="box">
+                 <div class="box-title">
+                     <h3><?php echo $this->__('Shipping Method') ?></h3>
+@@ -80,6 +90,9 @@
+                     </form>
+                 </div>
+             </div>
++
++            <?php echo $cfmHelper->getStepFieldsCode('shippmethod', 2, 'onepage', 'aitpaypalexpress'); ?>
++
+         </div>
+     </div>
+ <?php endif; ?>
+@@ -94,7 +107,15 @@
+                 </h3>
+             </div>
+             <div class="box-content">
++
++                <?php echo $cfmHelper->getStepFieldsCode('billing', 1, 'onepage', 'aitpaypalexpress'); ?>
++                <?php echo $cfmHelper->getStepFieldsCode('payment', 1, 'onepage', 'aitpaypalexpress'); ?>
++
+                 <?php echo $this->escapeHtml($this->getPaymentMethodTitle()) ?>
++
++                <?php echo $cfmHelper->getStepFieldsCode('billing', 2, 'onepage', 'aitpaypalexpress'); ?>
++                <?php echo $cfmHelper->getStepFieldsCode('payment', 2, 'onepage', 'aitpaypalexpress'); ?>
++
+             </div>
+         </div>
+     </div>
+@@ -102,9 +123,15 @@
+ 
+ <div class="info-set">
+     <h2 class="legend"><?php echo $this->__('Items in Your Shopping Cart') ?><span class="separator"> | </span><a href="<?php echo $this->getUrl('checkout/cart') ?>"><?php echo $this->__('Edit Shopping Cart') ?></a></h2>
++
++    <?php echo  $cfmHelper->getStepFieldsCode('review', 1, 'onepage', 'aitpaypalexpress'); ?>
++
+     <div id="details-reload">
+         <?php echo $this->getChildHtml('details') ?>
+     </div>
++
++    <?php echo  $cfmHelper->getStepFieldsCode('review', 2, 'onepage', 'aitpaypalexpress'); ?>
++
+ </div>
+ <form method="post" id="order_review_form" action="<?php echo $this->getPlaceOrderUrl() ?>">
+     <?php echo $this->getChildHtml('agreements'); ?>
+@@ -126,12 +153,33 @@
+ 
+     <?php if ($this->getUseAjax()):?>
+     OrderReviewController.prototype._submitOrder = function() {
++
++        if(!this.validate()) {
++            return false;
++        }
++
++        if ($$('.aitcfm-fieldset').length) {
++            if ($('aitcfm-fieldset-tmp')) {
++                $('aitcfm-fieldset-tmp').remove();
++            }
++            var ait_fieldset_tmp = new Element('div', {id : 'aitcfm-fieldset-tmp', style: 'display:none !important;' });
++
++            $$('.aitcfm-fieldset input, .aitcfm-fieldset select, .aitcfm-fieldset textarea').each(function(el) {
++                ait_fieldset_tmp.insert(el.clone(true));
++            });
++            this.form.insert(ait_fieldset_tmp);
++        }
++
+         if (this._canSubmitOrder) {
+             if (this._pleaseWait) {
+                 this._pleaseWait.show();
+             }
+             new Ajax.Request(this.form.action, {
++                <?php /* AITCFM_COMMENT_START
+                 parameters: {isAjax: 1, method: 'POST'},
++                AITCFM_COMMENT_END */ ?>
++                mathod: 'post',
++                parameters: 'isAjax=1' + ((serializedCfmForm = $('order_review_form').serialize()) ? ('&' + serializedCfmForm) : '' ),
+                 onSuccess: function(transport) {
+                     try{
+                         response = eval('(' + transport.responseText + ')');
+@@ -167,7 +215,59 @@
+             });
+         }
+     }
++
++    <?php else: ?>
++
++    OrderReviewController.addMethods({
++        _submitOrder : function()
++        {
++            if(!this.validate()) {
++                return false;
++            }
++            if ($$('.aitcfm-fieldset').length) {
++                if ($('aitcfm-fieldset-tmp')) {
++                    $('aitcfm-fieldset-tmp').remove();
++                }
++                var ait_fieldset_tmp = new Element('div', {id : 'aitcfm-fieldset-tmp', style: 'display:none !important;' });
++
++                $$('.aitcfm-fieldset input, .aitcfm-fieldset select, .aitcfm-fieldset textarea').each(function(el) {
++                    ait_fieldset_tmp.insert(el.clone(true));
++                });
++                this.form.insert(ait_fieldset_tmp);
++            }
++            if (this._canSubmitOrder) {
++                this.form.submit();
++                this._updateOrderSubmit(true);
++                if (this._pleaseWait) {
++                    this._pleaseWait.show();
++                }
++            }
++        }
++    });
++
+     <?php endif ?>
++
++
++    OrderReviewController.addMethods({
++        validate: function()
++        {
++            if ($$('.aitcfm-fieldset').length) {
++                var ait_validate_result = true;
++                $$('.aitcfm-fieldset input, .aitcfm-fieldset select, .aitcfm-fieldset textarea').each(function(el) {
++                    if (!Validation.validate(el)) {
++                        ait_validate_result = false;
++                    }
++                });
++                if (ait_validate_result === false) {
++                    return ait_validate_result;
++                }
++            }
++            if( typeof(this.validator) == 'undefined') {
++                this.validator = new Validation(this.form);
++            }
++            return this.validator.validate();
++        }
++    });
+ 
+     PayPalExpressAjax = new OrderReviewController($('order_review_form'), $('review_button'),
+         $('shipping_method'), $('shipping_method_form'), 'details-reload'

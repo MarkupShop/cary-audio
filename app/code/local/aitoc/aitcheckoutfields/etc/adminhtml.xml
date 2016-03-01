@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<system>
+			<children>
+				<aitcheckoutfields> 
+					<title>Checkout Attributes</title>
+					<action>adminhtml/aitcheckoutfields_index</action>
+					<sort_order>20</sort_order>           
+				</aitcheckoutfields> 
+			</children>
+		</system>
+	</menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <aitcheckoutfields translate="title" module="aitcheckoutfields">
+                                <title>Manage Aitoc Checkout Attributes</title>
+                                <sort_order>1</sort_order>
+                            </aitcheckoutfields>
+                            <config>
+                                <children>
+                                    <aitcheckoutfields translate="title" module="aitcheckoutfields">
+                                        <title>Manage Aitoc Checkout Attributes</title>
+                                    </aitcheckoutfields>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
