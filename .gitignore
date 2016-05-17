@@ -13,3 +13,4 @@ media/*
 skin/frontend/ultimo/default/css/_config/*
 node_modules
 .sass-cache
+.idea
