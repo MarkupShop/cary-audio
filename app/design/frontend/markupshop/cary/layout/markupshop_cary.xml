@@ -43,8 +43,7 @@
 					<child>additional</child>
 				</action>
 				<!-- Customer Reviews -->
-				<action method="addTab" translate="title" module="review"
-					ifconfig="ultimo/product_page/collateral_reviews"><alias>customer_reviews</alias><title>Customer Reviews</title><block>review/product_view_list</block><template>review/product/view/list.phtml</template></action>
+				<action method="addTab" translate="title" module="catalog"><alias>customer_reviews</alias><title>Customer Reviews</title><block>catalog/product_view</block><template>catalog/product/view/yotpo_reviews.phtml</template></action>
 				<!-- Professional Reviews -->
 				<action method="addTab" translate="title" module="catalog"><alias>professional_reviews</alias><title>Professional Reviews</title><block>catalog/product_view_attributes</block><template>catalog/product/view/professional_reviews.phtml</template></action>
                 <!-- Downloads -->

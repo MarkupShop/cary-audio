@@ -1,0 +1,32 @@
+.yotpo {
+
+  .product-shop & {
+
+    &.bottomLine {
+      margin-bottom: 1em;
+      .yotpo-stars {
+        margin-right: .5em;
+      }
+    }
+
+  }
+
+  .products-grid & {
+
+    &.bottomLine {
+      display: inline-block;
+    }
+
+  }
+
+  a {
+    &.text-m {
+      color: $primary-blue !important;
+
+      &:hover {
+        color: $primary-blue !important;
+      }
+    }
+  }
+
+}
