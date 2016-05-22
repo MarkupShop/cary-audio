@@ -9,6 +9,26 @@ cary.site = (function($) {
   
     //Get blog posts
     self.getBlogPosts();
+
+    //Trigger for opening reviews tab
+    self.reviewsTabOpen();
+  };
+
+  self.reviewsTabOpen = function()
+  {
+    //Adds product page tab toggle for YotPo reviews
+    var $tabs = $('.product-view #product-tabs .tabs:first li');
+
+    var index = $tabs.index($('#tab-customer_reviews'));
+
+    if(index > -1) {
+      $('.product-shop').on('click', '.yotpo-bottomline .text-m', function(e) {
+        $tabs.eq(index).find('>a:first').trigger('click');
+        $('html, body').animate({
+          scrollTop: $tabs.offset().top
+        }, 500);
+      });
+    }
   };
   
   self.getBlogPosts = function()
